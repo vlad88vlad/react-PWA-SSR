@@ -6,6 +6,7 @@ import './App.scss';
 import { StaticRoutesConfig } from './router';
 import RenderRoutes from './router/RenderRoutes';
 
+
 const App = () => (
     <div>
         <Link to="/domainA">domainA</Link>

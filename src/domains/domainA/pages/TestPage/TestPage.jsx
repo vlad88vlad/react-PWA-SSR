@@ -1,18 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from 'components/Button';
-import Img from 'assets/ok.png';
 import './style.scss';
 
 const TestPage = () => {
-    const [show, setShow] = useState(false);
     const [data, setData] = useState([]);
 
-    useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/todos').then(({ data: respData }) => {
+
+    const getData = () => {
+        axios.get('https://jsonplaceholder.typicode.com/todos', {
+            headers: {
+                'Cache-Control': 'no-cache',
+                test: 'test',
+            },
+        }).then(({ data: respData }) => {
             console.log(respData);
             setData(respData);
         });
+    };
+    const postData = () => {
+        axios.post('https://jsonplaceholder.typicode.com/posts', {
+            title: 'foo',
+            body: 'bar',
+            userId: 1,
+        }).then(({ data: respData }) => {
+            console.log(respData);
+        });
+    };
+
+    const getDataWithCache = () => {
+        axios.get('https://jsonplaceholder.typicode.com/todos/1').then(({ data: respData }) => {
+            console.log(respData);
+        });
+    };
+
+    useEffect(() => {
     }, []);
 
 
@@ -25,14 +47,15 @@ const TestPage = () => {
                 TestPage TestPage TestPage TestPage TestPage TestPage
                 TestPage TestPage TestPage TestPage TestPage TestPage
             </p>
-            <Button onClick={() => setShow(!show)}>
-                {show ? 'hide' : 'show'}
+            <Button onClick={() => getData()}>
+                getData
             </Button>
-            {show && (
-                <div>
-                    <img src={Img} alt="img" />
-                </div>
-            )}
+            <Button onClick={() => getDataWithCache()}>
+                getDataWithCache
+            </Button>
+            <Button onClick={() => postData()}>
+                postData
+            </Button>
             {data.map((item) => (
                 <div key={item.id}>
                     <div>{item.title}</div>
