@@ -3,10 +3,10 @@ import { lazyLoad } from 'router/utils/lazyLoad';
 export const routes = [
     {
         key: 'TestPage',
-        component: lazyLoad(import(/* webpackChunkName: "Test2" */ '../pages/TestPage')),
+        component: lazyLoad(import(/* webpackChunkName: "TestPage" */ '../pages/TestPage')),
         path: '/TestPage',
         meta: {
-            title: 'domainA',
+            title: 'TestPage',
             meta: [
                 { name: 'description', content: 'TestPage' },
             ],
@@ -15,7 +15,7 @@ export const routes = [
     },
     {
         key: 'TestPage',
-        component: lazyLoad(import(/* webpackChunkName: "Test2" */ '../pages/DemoPage')),
+        component: lazyLoad(import(/* webpackChunkName: "DemoPage" */ '../pages/DemoPage')),
         path: '/DemoPage',
         meta: {
             title: 'DemoPage',

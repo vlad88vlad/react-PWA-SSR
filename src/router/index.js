@@ -7,10 +7,10 @@ export const StaticRoutesConfig = [
         component: lazyLoad(import(/* webpackChunkName: "domainA" */ '../domains/domainA')),
         path: '/domainA',
         meta: {
-            title: 'domainA',
-            meta: [
-                { name: 'description', content: 'domainA' },
-            ],
+            // title: 'domainA',
+            // meta: [
+            //     { name: 'description', content: 'domainA' },
+            // ],
 
         },
     },

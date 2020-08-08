@@ -2,6 +2,7 @@ import { hydrate } from 'react-dom';
 import Loadable from 'react-loadable';
 import * as serviceWorker from './serviceWorker';
 import { clientRender } from './render';
+import './translations/i18n';
 
 window.onload = () => {
     Loadable.preloadReady().then(() => {

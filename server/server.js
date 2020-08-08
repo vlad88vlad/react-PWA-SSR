@@ -5,6 +5,7 @@ import fs from 'fs';
 import Loadable from 'react-loadable';
 import path from 'path';
 import { serverRender, addSEO } from '../src/render';
+import translations from './translations/translationsExample';
 
 const PORT = 8081;
 const app = express();
@@ -31,7 +32,8 @@ const renderHTML = (req, res) => {
     });
 };
 
-app.get('*', renderHTML);
+app.route('/translations/:lang').get(translations);
+app.get('/*', renderHTML);
 Loadable.preloadAll().then(() => {
     app.listen(PORT, () => {
         console.log(`SSR running on port ${PORT}`);

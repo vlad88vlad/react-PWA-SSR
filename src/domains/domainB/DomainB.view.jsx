@@ -1,17 +1,24 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-const DomainBView = () => (
-    <div>
-        <h1>domain-driven design </h1>
-        <a
-            href="https://css-tricks.com/domain-driven-design-with-react/"
-            target="_blank"
-            rel="noreferrer noopener"
-        >
-            link
-        </a>
+const DomainBView = () => {
+    const { t } = useTranslation();
 
-    </div>
-);
+
+    return (
+        <div>
+            <h1>{t('domainB.title')}</h1>
+
+            <a
+                href="https://css-tricks.com/domain-driven-design-with-react/"
+                target="_blank"
+                rel="noreferrer noopener"
+            >
+                {t('domainB.link')}
+            </a>
+
+        </div>
+    );
+};
 
 export default DomainBView;

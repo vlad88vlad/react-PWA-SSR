@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import Button from 'components/Button';
 import './style.scss';
 
 const TestPage = () => {
+    const { t } = useTranslation();
     const [data, setData] = useState([]);
 
 
@@ -40,7 +42,7 @@ const TestPage = () => {
 
     return (
         <main className="TestPage">
-            <h1>TestPage</h1>
+            <h1>{t('domainA.TestPage')}</h1>
             <p>
                 TestPage TestPage TestPage TestPage TestPage TestPage
                 TestPage TestPage TestPage TestPage TestPage TestPage
