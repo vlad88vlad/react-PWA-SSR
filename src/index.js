@@ -3,6 +3,10 @@ import Loadable from 'react-loadable';
 import * as serviceWorker from './serviceWorker';
 import { clientRender } from './render';
 import './translations/i18n';
+import client from "./api-client";
+import interceptorsInit from './api-client/interceptors';
+
+interceptorsInit(client);
 
 window.onload = () => {
     Loadable.preloadReady().then(() => {

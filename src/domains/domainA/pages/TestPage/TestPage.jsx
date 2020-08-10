@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
+import client from 'api-client';
 import Button from 'components/Button';
 import './style.scss';
 
@@ -10,7 +10,7 @@ const TestPage = () => {
 
 
     const getData = () => {
-        axios.get('https://jsonplaceholder.typicode.com/todos', {
+        client.get('https://jsonplaceholder.typicode.com/todos', {
             headers: {
                 'Cache-Control': 'no-cache',
                 test: 'test',
@@ -21,7 +21,7 @@ const TestPage = () => {
         });
     };
     const postData = () => {
-        axios.post('https://jsonplaceholder.typicode.com/posts', {
+        client.post('https://jsonplaceholder.typicode.com/posts', {
             title: 'foo',
             body: 'bar',
             userId: 1,
@@ -31,7 +31,7 @@ const TestPage = () => {
     };
 
     const getDataWithCache = () => {
-        axios.get('https://jsonplaceholder.typicode.com/todos/1').then(({ data: respData }) => {
+        client.get('https://jsonplaceholder.typicode.com/todos/1').then(({ data: respData }) => {
             console.log(respData);
         });
     };

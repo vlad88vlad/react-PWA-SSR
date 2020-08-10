@@ -1,3 +1,4 @@
+// todo check using case convertered client from api-client
 import axios from 'axios';
 import { resourceAdapt } from '../adaptors/resourceAdapt';
 
