@@ -17,12 +17,12 @@ export const routes = [
         key: 'TestPage',
         component: lazyLoad(import(/* webpackChunkName: "DemoPage" */ '../pages/DemoPage')),
         path: '/DemoPage',
-        meta: {
-            title: 'DemoPage',
-            meta: [
-                { name: 'description', content: 'DemoPage' },
-            ],
-
-        },
+        // meta: {
+        //     title: 'DemoPage',
+        //     meta: [
+        //         { name: 'description', content: 'DemoPage' },
+        //     ],
+        //
+        // },
     },
 ];

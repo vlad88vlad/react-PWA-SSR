@@ -1,43 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import client from 'api-client';
 import Button from 'components/Button';
 import './style.scss';
+import { useSSE } from 'useSSE';
 
 const TestPage = () => {
     const { t } = useTranslation();
-    const [data, setData] = useState([]);
+    // const [data, setData] = useState([]);
 
 
-    const getData = () => {
-        client.get('https://jsonplaceholder.typicode.com/todos', {
-            headers: {
-                'Cache-Control': 'no-cache',
-                test: 'test',
-            },
-        }).then(({ data: respData }) => {
-            console.log(respData);
-            setData(respData);
-        });
-    };
+    // const getData = () => {
+    //     client.get('https://jsonplaceholder.typicode.com/todos', {
+    //         headers: {
+    //             'Cache-Control': 'no-cache',
+    //             test: 'test',
+    //         },
+    //     }).then(({ data: respData }) => {
+    //         console.log(respData);
+    //         setData(respData);
+    //     });
+    // };
     const postData = () => {
         client.post('https://jsonplaceholder.typicode.com/posts', {
             title: 'foo',
             body: 'bar',
             userId: 1,
-        }).then(({ data: respData }) => {
-            console.log(respData);
-        });
+        })
+            .then(({ data: respData }) => {
+                console.log(respData);
+            });
     };
 
     const getDataWithCache = () => {
-        client.get('https://jsonplaceholder.typicode.com/todos/1').then(({ data: respData }) => {
-            console.log(respData);
-        });
+        client.get('https://jsonplaceholder.typicode.com/todos/1')
+            .then(({ data: respData }) => {
+                console.log(respData);
+            });
     };
 
-    useEffect(() => {
-    }, []);
+    // useEffect(() => {
+    // }, []);
+    const [data, loading] = useSSE(
+        () => new Promise((resolve) => client.get('https://jsonplaceholder.typicode.com/todos/')
+            .then(({ data: dataR }) => resolve(dataR))),
+        [],
+    );
+
+    console.log({ loading });
 
 
     return (
@@ -49,16 +59,16 @@ const TestPage = () => {
                 TestPage TestPage TestPage TestPage TestPage TestPage
                 TestPage TestPage TestPage TestPage TestPage TestPage
             </p>
-            <Button onClick={() => getData()}>
-                getData
-            </Button>
+            {/* <Button onClick={() => getData()}> */}
+            {/*    getData */}
+            {/* </Button> */}
             <Button onClick={() => getDataWithCache()}>
                 getDataWithCache
             </Button>
             <Button onClick={() => postData()}>
                 postData
             </Button>
-            {data.map((item) => (
+            {data && data.map((item) => (
                 <div key={item.id}>
                     <div>{item.title}</div>
                 </div>
